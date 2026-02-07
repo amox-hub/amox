@@ -5,10 +5,12 @@ import google.generativeai as genai
 st.set_page_config(page_title="Amox AI", page_icon="⚡")
 st.title("⚡ Amox AI Chatbot")
 
-# مفتاح الـ API الخاص بك (موجود في صورتك)
-API_KEY = "AIzaSyAPQxFd26DrXkCbrNLxlUFwveJLr0tKhpQ"
+# تأكد من أن مفتاحك صحيح هنا
+API_KEY = "AIzaSyAPQxFd26DrXkCbrNLxlUFwveJLr0tKhpQ" 
 genai.configure(api_key=API_KEY)
-model = genai.GenerativeModel('gemini-pro')
+
+# التعديل الذهبي: استخدام اسم الموديل الكامل والأحدث
+model = genai.GenerativeModel('models/gemini-1.5-flash')
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -23,6 +25,10 @@ if prompt := st.chat_input("كيف يمكن لـ Amox مساعدتك؟"):
         st.markdown(prompt)
 
     with st.chat_message("assistant"):
-        response = model.generate_content(prompt)
-        st.markdown(response.text)
-        st.session_state.messages.append({"role": "assistant", "content": response.text})
+        try:
+            # إضافة معالجة للأخطاء للتأكد من الرد
+            response = model.generate_content(prompt)
+            st.markdown(response.text)
+            st.session_state.messages.append({"role": "assistant", "content": response.text})
+        except Exception as e:
+            st.error(f"حدث خطأ في الاتصال: {e}")
