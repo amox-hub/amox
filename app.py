@@ -6,7 +6,7 @@ st.set_page_config(page_title="Amox AI", page_icon="⚡")
 st.title("⚡ Amox AI Chatbot")
 
 # مفتاح الـ API الخاص بك (موجود في صورتك)
-API_KEY = "AIzaSyAPQxFd26DrXkCbrNLxlUFwveJLr0tKhpQ" 
+API_KEY = "AIzaSyAPQxFd26DrXkCbrNLxlUFwveJLr0tKhpQ"
 genai.configure(api_key=API_KEY)
 model = genai.GenerativeModel('gemini-pro')
 
