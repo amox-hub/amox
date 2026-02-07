@@ -1,16 +1,14 @@
 import streamlit as st
 import google.generativeai as genai
 
-# إعداد واجهة Amox
-st.set_page_config(page_title="Amox AI", page_icon="⚡")
-st.title("⚡ Amox AI Chatbot")
+# جلب المفتاح من الـ Secrets بدلاً من كتابته يدوياً
+try:
+    API_KEY = st.secrets["GOOGLE_API_KEY"]
+    genai.configure(api_key=API_KEY)
+except:
+    st.error("يرجى إعداد المفتاح في Settings > Secrets")
 
-# تأكد من أن مفتاحك صحيح هنا
-API_KEY = "AIzaSyAPQxFd26DrXkCbrNLxlUFwveJLr0tKhpQ" 
-genai.configure(api_key=API_KEY)
-
-# التعديل الذهبي: استخدام اسم الموديل الكامل والأحدث
-model = genai.GenerativeModel('gemini-1.5-pro-latest')
+model = genai.GenerativeModel('gemini-1.5-flash')
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
