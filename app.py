@@ -10,7 +10,7 @@ API_KEY = "AIzaSyAPQxFd26DrXkCbrNLxlUFwveJLr0tKhpQ"
 genai.configure(api_key=API_KEY)
 
 # التعديل الذهبي: استخدام اسم الموديل الكامل والأحدث
-model = genai.GenerativeModel('models/gemini-1.5-flash')
+model = genai.GenerativeModel('gemini-1.5-flash-latest')
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
